@@ -98,6 +98,7 @@ namespace MediatrTest.Commands
                     throw new PostCommandHandleValidationException(postHandleFailures);
                 }
                 
+                // TODO: Add transaction
                 var response = await _storeBehavior.StoreAsync(aggregate, cancellationToken);
                 
                 await _mediator.Publish(new CommandSuccess<TCommand, TAggregate>(command, aggregate), cancellationToken);
