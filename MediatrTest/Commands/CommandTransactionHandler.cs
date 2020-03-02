@@ -47,15 +47,15 @@ namespace MediatrTest.Commands
             IEnumerable<IPreCommandExecutionValidator<TCommand, TAggregate>> preHandleValidators, 
             IEnumerable<IPostCommandExecutionValidator<TCommand, TAggregate>> postHandleValidators, 
             IOptional<ICommandContextBehavior<TCommand, TAggregate>> contextBehavior, 
-            ICommandExecutionBehavior<TCommand, TAggregate> executionBehavior, 
-            ICommandStoreBehavior<TAggregate, TResponse> storeBehavior)
+            IOptional<ICommandExecutionBehavior<TCommand, TAggregate>> executionBehavior, 
+            IOptional<ICommandStoreBehavior<TAggregate, TResponse>> storeBehavior)
         {
             _mediator = mediator;
             _preHandleValidators = preHandleValidators ?? throw new ArgumentNullException(nameof(preHandleValidators));
             _postHandleValidators = postHandleValidators ?? throw new ArgumentNullException(nameof(postHandleValidators));
             _contextBehavior = contextBehavior.Instance;
-            _executionBehavior = executionBehavior;
-            _storeBehavior = storeBehavior;
+            _executionBehavior = executionBehavior?.Instance ?? throw new ArgumentNullException(nameof(executionBehavior));
+            _storeBehavior = storeBehavior?.Instance ?? throw new ArgumentNullException(nameof(storeBehavior));
         }
         
         public async Task<ICommandResponse<TResponse>> Handle(TCommand command, CancellationToken cancellationToken = default)
@@ -98,7 +98,6 @@ namespace MediatrTest.Commands
                     throw new PostCommandHandleValidationException(postHandleFailures);
                 }
                 
-                // TODO: Add transaction
                 var response = await _storeBehavior.StoreAsync(aggregate, cancellationToken);
                 
                 await _mediator.Publish(new CommandSuccess<TCommand, TAggregate>(command, aggregate), cancellationToken);

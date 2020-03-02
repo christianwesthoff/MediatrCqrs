@@ -30,14 +30,7 @@ namespace MediatrTest
             services.AddControllers();
             services.AddMediatR(typeof(Startup).Assembly);
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingPipelineBehavior<,>));
-            
-            typeof(Startup).Assembly.FindDerivedTypes(typeof(IBaseCommand)).ForEach(commandType =>
-            {
-                var args = commandType.GetInterface(typeof(ICommand<,>).Name).GenericTypeArguments.ToArray();
-                services.AddScoped(typeof(IRequestHandler<,>).MakeGenericType(commandType,
-                        typeof(ICommandResponse<>).MakeGenericType(args[1])), 
-                    typeof(CommandTransactionHandler<,,>).MakeGenericType(commandType, args[0], args[1]));   
-            });
+            services.AddCommands(typeof(Startup).Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -10,6 +10,7 @@ namespace MediatrTest.Commands
         public IEnumerable<Exception> Exceptions { get; set; }
     }
 
+    // ReSharper disable once UnusedTypeParameter
     public class CommandResponse<TCommand, TResponse> : ICommandResponse<TResponse>
     {
         public CommandResponse(TResponse response)

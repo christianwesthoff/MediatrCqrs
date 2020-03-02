@@ -5,6 +5,7 @@ using MediatR;
 namespace MediatrTest.Commands
 {
     
+    
     public class CommandSuccess<TCommand, TResult> : INotification
     {
         public CommandSuccess(TCommand command, TResult result)
