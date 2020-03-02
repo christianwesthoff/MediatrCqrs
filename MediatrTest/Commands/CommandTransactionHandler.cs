@@ -12,7 +12,7 @@ namespace MediatrTest.Commands
 
     public interface ICommandExecutionBehavior<in TCommand, TAggregate>
     {
-        public Task<TAggregate> ExecuteAsync(TCommand command, TAggregate state, CancellationToken cancellationToken = default);
+        Task<TAggregate> ExecuteAsync(TCommand command, TAggregate state, CancellationToken cancellationToken = default);
     }
     
     public interface ICommandContextBehavior<in TCommand, TAggregate>
