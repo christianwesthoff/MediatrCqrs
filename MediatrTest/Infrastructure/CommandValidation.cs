@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using FluentValidation;
 using FluentValidation.Results;
 
-namespace MediatrTest.Commands
+namespace MediatrTest.Infrastructure
 {
     public interface IPreCommandExecutionValidator<TCommand, TAggregate>: IValidator<CommandState<TCommand, TAggregate>> { }
     

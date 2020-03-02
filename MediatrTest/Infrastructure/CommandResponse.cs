@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MediatrTest.Commands
+namespace MediatrTest.Infrastructure
 {
     public interface ICommandResponse<TResponse>
     {

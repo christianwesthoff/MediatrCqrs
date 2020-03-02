@@ -1,4 +1,4 @@
-﻿﻿ namespace MediatrTest.Commands
+﻿﻿ namespace MediatrTest.Infrastructure
 {
     public class CommandState<TCommand, TAggregate>
     {

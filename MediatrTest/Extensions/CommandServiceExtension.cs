@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Reflection;
 using MediatR;
-using MediatrTest.Commands;
+using MediatrTest.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using MoreLinq;
 

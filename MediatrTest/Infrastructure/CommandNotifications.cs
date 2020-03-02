@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using MediatR;
 
-namespace MediatrTest.Commands
+namespace MediatrTest.Infrastructure
 {
-    
-    
+   
+  
     public class CommandSuccess<TCommand, TResult> : INotification
     {
         public CommandSuccess(TCommand command, TResult result)

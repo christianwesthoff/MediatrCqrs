@@ -1,6 +1,5 @@
 using System.Linq;
 using MediatR;
-using MediatrTest.Commands;
 using MediatrTest.Controllers;
 using MediatrTest.Extensions;
 using MediatrTest.Pipeline;

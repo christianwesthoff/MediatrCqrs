@@ -7,7 +7,7 @@ using MediatR;
 using MediatrTest.Extensions;
 using MediatrTest.Types;
 
-namespace MediatrTest.Commands
+namespace MediatrTest.Infrastructure
 {
 
     public interface ICommandExecutionBehavior<in TCommand, TAggregate>
